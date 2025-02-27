@@ -4,47 +4,71 @@
     {
         static void Main(string[] args)
         {
-
-            Console.WriteLine("Enter name of the Student :");
+            // Assignment 1
+            #region Q1
+            Console.WriteLine(" enter your name: ");
             string name = Console.ReadLine();
-            Console.WriteLine("Enter age of the Student :");
-            int age;
-            bool res;
-            res = int.TryParse(Console.ReadLine(), out age);
-
-            while (!res)
-            {
-                Console.WriteLine("Enter a valid age!!!");
-                res = int.TryParse(Console.ReadLine(), out age);
-
-            }
-            Console.WriteLine("Enter percentage of the Student :");
-
+            Console.WriteLine("enter your age: ");
+            int age = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine(" enter your HSC Percentage: ");
             double percentage = Convert.ToDouble(Console.ReadLine());
-            Console.WriteLine($" Name :{name}    Age :{age}   Percentage :{percentage}%");
+            Console.WriteLine($"Student's Name: {name} \t Student's Age: {age} \t Student's HSC Percentage: {percentage}%");
+            #endregion
 
-            Console.WriteLine("Enter your email :");
-            string email = Console.ReadLine();
-            while (email == "")
+            // Assignment 2
+            #region 
+            bool isNumeric;
+        Age:
+            Console.WriteLine("Please enter your age again: ");
+            isNumeric = int.TryParse(Console.ReadLine(), out age);
+            if (isNumeric == true)
             {
-                Console.WriteLine("Email  can't be empty!!");
-                email = Console.ReadLine();
-
-            }
-
-            Console.WriteLine($"Email :{email}");
-
-            string? date = "12/2/2024";
-
-            if (date != null)
-            {
-                Console.WriteLine("Person discharged");
-
+                Console.WriteLine($"Your age is {age}.");
             }
             else
             {
-                Console.WriteLine("Not Discharged");
+                Console.WriteLine("Bad Input");
+                Console.WriteLine("Please enter your age again: ");
+                goto Age;
             }
+        #endregion
+
+
+        // Assignment 3
+        #region 
+        takeMail:
+            Console.WriteLine(" enter your email: ");
+            string email = Console.ReadLine();
+            if (string.IsNullOrEmpty(email))
+            {
+                Console.WriteLine("enter the email.");
+                goto takeMail;
+            }
+            else
+            {
+                Console.WriteLine($"Your email is: {email}.");
+            }
+
+            #endregion
+
+            //Assignment 4
+
+            #region
+            bool isDate;
+        Date:
+            DateTime dischargeDate;
+            Console.WriteLine("Please enter date (MM-DD-YYYY): ");
+            isDate = DateTime.TryParse(Console.ReadLine(), out dischargeDate);
+            if (isDate == true)
+            {
+                Console.WriteLine($" Date is: {dischargeDate.ToString("dd/MM/yyyy")}");
+            }
+            else
+            {
+                Console.WriteLine("Not Discharged.");
+                goto Date;
+            }
+            #endregion
 
         }
     }
