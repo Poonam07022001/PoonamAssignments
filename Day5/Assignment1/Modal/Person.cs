@@ -4,17 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Exception_Handling.Modal
+namespace Assignment1.Modal
 {
-    internal class Bike
+    class Person
     {
-        public int Id { get; set; }
+        public int AccoutNumber { get; set; }
         public string Name { get; set; }
-        public decimal Price { get; set; }
 
         public override string ToString()
         {
-            return $"Id::{Id}Name::{Name}price::{Price}";
+            return $"Account Number:: {AccoutNumber} Name:: {Name}";
         }
     }
 }

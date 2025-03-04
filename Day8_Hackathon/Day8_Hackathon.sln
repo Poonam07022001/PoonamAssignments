@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.13.35825.156 d17.13
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assignment1", "Assignment1\Assignment1.csproj", "{5AD450A8-0CC9-4745-A39D-FB4C58CF7A67}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hackathon_Project", "Hackathon_Project\Hackathon_Project.csproj", "{D258152A-75C7-4408-8F1F-B475956E6D00}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{5AD450A8-0CC9-4745-A39D-FB4C58CF7A67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5AD450A8-0CC9-4745-A39D-FB4C58CF7A67}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5AD450A8-0CC9-4745-A39D-FB4C58CF7A67}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5AD450A8-0CC9-4745-A39D-FB4C58CF7A67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D258152A-75C7-4408-8F1F-B475956E6D00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D258152A-75C7-4408-8F1F-B475956E6D00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D258152A-75C7-4408-8F1F-B475956E6D00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D258152A-75C7-4408-8F1F-B475956E6D00}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {E6C39A16-6326-4CD9-8457-93889EE857CE}
+		SolutionGuid = {7B2C0824-B62A-4483-A8C6-9A83B2561F97}
 	EndGlobalSection
 EndGlobal
