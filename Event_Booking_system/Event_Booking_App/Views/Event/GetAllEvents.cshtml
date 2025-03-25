@@ -1,0 +1,78 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<User> _signinManager
+@inject UserManager<User> _userManager
+
+@model IEnumerable<Event_Booking_App.Models.Event>
+
+@{
+    ViewData["Title"] = "GetAllEvents";
+}
+
+<h1>All Events</h1>
+<h1>@TempData["message"]</h1> 
+@{
+    var appUser = await _userManager.GetUserAsync(User);
+}
+@if (appUser != null && await _userManager.IsInRoleAsync(appUser, "Admin"))
+{
+    <p>
+        <a asp-action="AddEvent">Create New</a>
+    </p>
+}
+@* @if (_signinManager.IsSignedIn(User) && (await _userManager.IsInRoleAsync(User,"Admin"))) *@
+@* { *@
+    
+@* <p> *@
+@*     <a asp-action="AddEvent">Create New</a> *@
+@* </p> *@
+@* } *@
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Location)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AvailableSeats)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TicketPrice)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AvailableSeats)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TicketPrice)
+            </td>
+            <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                    |
+                    <a asp-action="Delete" asp-route-id="@item.Id"
+                       onclick="return confirm('Are you sure you want to delete this event?');">Delete</a>
+
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
