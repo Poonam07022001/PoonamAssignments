@@ -22,6 +22,12 @@ namespace Event_Booking_App.Repository
             if (eventEntity == null || eventEntity.AvailableSeats < ticketBooking.Quantity)
                 return 0;
 
+            //var booking =new TicketBooking
+            //{
+            //    UserId=
+            //    EventId=eventEntity.Id,
+                
+            //}
             // Reduce available seats
             eventEntity.AvailableSeats -= ticketBooking.Quantity;
             await _eventBookingDB.TicketBookings.AddAsync(ticketBooking);
@@ -31,21 +37,23 @@ namespace Event_Booking_App.Repository
         public async Task<bool> CancelBooking(int bookingId)
         {
             var booking = await _eventBookingDB.TicketBookings
-               .Include(b => b.Event)
-               .FirstOrDefaultAsync(b => b.Id == bookingId);
+                .Include(b => b.Event)
+                .FirstOrDefaultAsync(b => b.Id == bookingId);
 
-            if (booking == null)
-                return false; // Booking not found
+            if (booking == null || booking.Status != TicketBookingStatus.Confirmed)
+                return false; // Booking not found or not eligible for cancellation
 
-            // Increase available seats in the event
+            // Increase available seats
             booking.Event.AvailableSeats += booking.Quantity;
 
-            // Remove the booking
-            _eventBookingDB.TicketBookings.Remove(booking);
+            // Update booking status to Cancelled
+            booking.Status = TicketBookingStatus.Canceled;
+
             await _eventBookingDB.SaveChangesAsync();
 
             return true;
         }
+
 
         public async Task<IEnumerable<Event>> GetAllEvents()
         {

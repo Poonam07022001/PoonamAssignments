@@ -1,4 +1,5 @@
-﻿using Event_Booking_App.Models;
+﻿using Event_Booking_App.Constant;
+using Event_Booking_App.Models;
 using Event_Booking_App.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -7,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Event_Booking_App.Controllers
 {
+    [Authorize]
     [Route("[controller]/[action]")]
     public class TicketBookingController : Controller
     {
@@ -56,9 +58,18 @@ namespace Event_Booking_App.Controllers
         {
             var userId = await _userManager.GetUserAsync(User);
 
-            ticketBooking.User = userId;
-            ticketBooking.EventId = eventId;
-            await _ticketBookingServices.AddBooking(ticketBooking);
+            //ticketBooking.User = userId;
+            //ticketBooking.EventId = eventId;
+
+            var booking = new TicketBooking
+            {
+                UserId = userId.Id,
+                EventId = eventId,
+                Quantity = ticketBooking.Quantity,
+                BookingDate = DateTime.Now,
+                Status = TicketBookingStatus.Confirmed
+            };
+            await _ticketBookingServices.AddBooking(booking);
             return RedirectToAction("GetAllTicket");
         }
 
@@ -86,6 +97,7 @@ namespace Event_Booking_App.Controllers
 
             return RedirectToAction("GetAllTicket");
         }
+
 
     }
 
