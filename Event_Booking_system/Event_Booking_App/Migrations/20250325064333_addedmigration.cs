@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Event_Booking_App.Migrations
 {
-    public partial class one : Migration
+    public partial class addedmigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -179,8 +179,7 @@ namespace Event_Booking_App.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<int>(type: "int", nullable: false),
-                    UserId1 = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     EventId = table.Column<int>(type: "int", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false),
                     BookingDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -190,10 +189,11 @@ namespace Event_Booking_App.Migrations
                 {
                     table.PrimaryKey("PK_TicketBookings", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_TicketBookings_AspNetUsers_UserId1",
-                        column: x => x.UserId1,
+                        name: "FK_TicketBookings_AspNetUsers_UserId",
+                        column: x => x.UserId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_TicketBookings_Events_EventId",
                         column: x => x.EventId,
@@ -247,9 +247,9 @@ namespace Event_Booking_App.Migrations
                 column: "EventId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TicketBookings_UserId1",
+                name: "IX_TicketBookings_UserId",
                 table: "TicketBookings",
-                column: "UserId1");
+                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

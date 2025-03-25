@@ -31,8 +31,8 @@ namespace Event_Booking_App
             builder.Services.AddScoped<ITicketBookingRepository, TicketBookingRepository>();
 
             builder.Services.AddIdentity<User, IdentityRole>()
-               .AddEntityFrameworkStores<EventBookingDB>()
-                     .AddDefaultTokenProviders();
+               .AddEntityFrameworkStores<EventBookingDB>();
+                     
 
             var app = builder.Build();
             //builder.Services.Configure<>

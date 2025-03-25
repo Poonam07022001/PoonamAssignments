@@ -4,8 +4,10 @@ namespace Event_Booking_App.Repository
 {
     public interface ITicketBookingRepository
     {
-        Task<IEnumerable<TicketBooking>> GetBookingsByUserId(int userId);
-        Task<int> BookTicket(int userId, int eventId, int quantity);
-        Task<int> CancelBooking(int bookingId);
+        public Task<IEnumerable<TicketBooking>> GetAllTicket(string id);
+        Task<IEnumerable<Event>> GetAllEvents();
+        //Task<IEnumerable> GetAllUser();
+        Task<int> AddBooking(TicketBooking ticketBooking);
+        public Task<bool> CancelBooking(int bookingId);
     }
 }

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Event_Booking_App.Migrations
 {
     [DbContext(typeof(EventBookingDB))]
-    [Migration("20250324074537_one")]
-    partial class one
+    [Migration("20250325064333_addedmigration")]
+    partial class addedmigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -74,17 +74,15 @@ namespace Event_Booking_App.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UserId1")
+                    b.Property<string>("UserId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("EventId");
 
-                    b.HasIndex("UserId1");
+                    b.HasIndex("UserId");
 
                     b.ToTable("TicketBookings");
                 });
@@ -305,7 +303,9 @@ namespace Event_Booking_App.Migrations
 
                     b.HasOne("Event_Booking_App.Models.User", "User")
                         .WithMany("TicketBookings")
-                        .HasForeignKey("UserId1");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Event");
 

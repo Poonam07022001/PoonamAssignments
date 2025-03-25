@@ -14,54 +14,51 @@ namespace Event_Booking_App.Repository
             _eventBookingDB = eventBookingDB;
         }
 
-           public async Task<int> BookTicket(int userId, int eventId, int quantity)
-    {
-        var eventEntity = await _eventBookingDB.Events.FindAsync(eventId);
-        if (eventEntity == null || eventEntity.AvailableSeats < quantity)
+        public async Task<int> AddBooking(TicketBooking ticketBooking)
         {
-            throw new Exception("Event not found or insufficient seats available.");
-        }
+            var eventEntity = await _eventBookingDB.Events
+       .FirstOrDefaultAsync(e => e.Id == ticketBooking.EventId);
 
-        eventEntity.AvailableSeats -= quantity;
+            if (eventEntity == null || eventEntity.AvailableSeats < ticketBooking.Quantity)
+                return 0;
 
-        var booking = new TicketBooking
-        {
-            UserId = userId,
-            EventId = eventId,
-            Quantity = quantity,
-            BookingDate = DateTime.UtcNow,
-            Status = TicketBookingStatus.Confirmed
-        };
-
-            _eventBookingDB.TicketBookings.Add(booking);
-        return await _eventBookingDB.SaveChangesAsync();
-    }
-
-        public async Task<int> CancelBooking(int bookingId)
-        {
-            var booking = await _eventBookingDB.TicketBookings.FindAsync(bookingId);
-            if (booking == null)
-            {
-                throw new Exception("Booking not found.");
-            }
-
-            var eventEntity = await _eventBookingDB.Events.FindAsync(booking.EventId);
-            if (eventEntity != null)
-            {   
-                eventEntity.AvailableSeats += booking.Quantity;
-            }
-
-            booking.Status = TicketBookingStatus.Canceled; 
+            // Reduce available seats
+            eventEntity.AvailableSeats -= ticketBooking.Quantity;
+            await _eventBookingDB.TicketBookings.AddAsync(ticketBooking);
             return await _eventBookingDB.SaveChangesAsync();
         }
 
-
-        public async Task<IEnumerable<TicketBooking>> GetBookingsByUserId(int userId)
+        public async Task<bool> CancelBooking(int bookingId)
         {
-            return await _eventBookingDB.TicketBookings
-                        .Where(b => b.UserId == userId)
-                        .Include(b => b.Event)
-                        .ToListAsync();
+            var booking = await _eventBookingDB.TicketBookings
+               .Include(b => b.Event)
+               .FirstOrDefaultAsync(b => b.Id == bookingId);
+
+            if (booking == null)
+                return false; // Booking not found
+
+            // Increase available seats in the event
+            booking.Event.AvailableSeats += booking.Quantity;
+
+            // Remove the booking
+            _eventBookingDB.TicketBookings.Remove(booking);
+            await _eventBookingDB.SaveChangesAsync();
+
+            return true;
+        }
+
+        public async Task<IEnumerable<Event>> GetAllEvents()
+        {
+            return await _eventBookingDB.Events.ToListAsync();
+        }
+
+        public async Task<IEnumerable<TicketBooking>> GetAllTicket(string id)
+        {
+            var tickets = await _eventBookingDB.TicketBookings
+                         .Include(t => t.Event)
+                         .Where(t => t.UserId == id)
+                         .ToListAsync();
+            return tickets;
         }
     }
 }

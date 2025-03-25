@@ -12,19 +12,26 @@ namespace Event_Booking_App.Services
             _ticketBookingRepository = ticketBookingRepository;
         }
 
-        public async Task<int> BookTicket(int userId, int eventId, int quantity)
+        public async Task<int> AddBooking(TicketBooking ticketBooking)
         {
-            return await _ticketBookingRepository.BookTicket(userId, eventId, quantity);
+            return await _ticketBookingRepository.AddBooking(ticketBooking);
+
         }
 
-        public async Task<int> CancelBooking(int bookingId)
+        public async Task<bool> CancelBooking(int bookingId)
         {
             return await _ticketBookingRepository.CancelBooking(bookingId);
         }
 
-        public async Task<IEnumerable<TicketBooking>> GetBookingsByUserId(int userId)
+        public async Task<IEnumerable<Event>> GetAllEvents()
         {
-            return await _ticketBookingRepository.GetBookingsByUserId(userId);
+            return await _ticketBookingRepository.GetAllEvents();
+        }
+
+        public async Task<IEnumerable<TicketBooking>> GetAllTicket(string id)
+        {
+            return await _ticketBookingRepository.GetAllTicket(id);
+
         }
     }
 }

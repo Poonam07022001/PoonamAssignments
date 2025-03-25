@@ -1,23 +1,23 @@
 ﻿@model IEnumerable<Event_Booking_App.Models.TicketBooking>
 
 @{
-    ViewData["Title"] = "GetBookingsByUser";
+    ViewData["Title"] = "GetAllTicket";
 }
 
-<h1>GetBookingsByUser</h1>
+<h1>GetAllTicket</h1>
 
 <p>
-    <a asp-action="BookTicket">Book Ticket</a>
+    <a asp-action="Create">Create New</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.User)
+                @Html.DisplayNameFor(model => model.Event.Name)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Event)
-            </th>
+            @* <th> *@
+            @*     @Html.DisplayNameFor(model => model.Event) *@
+            @* </th> *@
             <th>
                 @Html.DisplayNameFor(model => model.Quantity)
             </th>
@@ -34,11 +34,11 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.User.Id)
+                @Html.DisplayFor(modelItem => item.Event.Name)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Event.Id)
-            </td>
+            @* <td> *@
+            @*     @Html.DisplayFor(modelItem => item.Event.Id) *@
+            @* </td> *@
             <td>
                 @Html.DisplayFor(modelItem => item.Quantity)
             </td>
