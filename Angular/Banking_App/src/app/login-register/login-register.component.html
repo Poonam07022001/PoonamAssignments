@@ -1,0 +1,17 @@
+<!-- RegisterComponent (register.component.html) -->
+<form (ngSubmit)="onRegister()" #registerForm="ngForm">
+    <div class="mb-3">
+      <label for="registerEmail" class="form-label">Email</label>
+      <input type="email" class="form-control" id="registerEmail" name="registerEmail" [(ngModel)]="registerEmail" required />
+    </div>
+    <div class="mb-3">
+      <label for="registerPassword" class="form-label">Password</label>
+      <input type="password" class="form-control" id="registerPassword" name="registerPassword" [(ngModel)]="registerPassword" required />
+    </div>
+    <div class="mb-3">
+        <label for="registerConfirmPassword" class="form-label">Confirm Password</label>
+        <input type="confirmpassword" class="form-control" id="registerConfirmPassword" name="registerConfirmPassword" [(ngModel)]="registerConfirmPassword" required />
+      </div>
+    <button type="submit" class="btn btn-primary">Register</button>
+  </form>
+  

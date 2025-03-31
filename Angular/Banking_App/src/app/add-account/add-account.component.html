@@ -1,0 +1,24 @@
+<form (ngSubmit)="addAccount()">
+    <div class="mb-3">
+      <label for="accountName" class="form-label">Account Name</label>
+      <input type="text" class="form-control" id="accountName"  name="name" required>
+    </div>
+  
+    <div class="mb-3">
+      <label for="accountType" class="form-label">Account Type</label>
+      <select class="form-control" id="accountType" name="type" required>
+        <option value="Savings">Savings</option>
+        <option value="Checking">Checking</option>
+        <option value="Business">Business</option>
+      </select>
+    </div>
+  
+    <div class="mb-3">
+      <label for="balance" class="form-label">Balance</label>
+      <input type="number" class="form-control" id="balance" name="balance" required>
+    </div>
+  
+    <button type="submit" class="btn btn-success">Save Account</button>
+    <button type="button" class="btn btn-secondary ms-2" data-bs-dismiss="modal">Cancel</button>
+  </form>
+  

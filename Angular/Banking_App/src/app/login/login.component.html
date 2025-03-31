@@ -1,0 +1,49 @@
+<div>
+    <form (ngSubmit)="onLogin()" #loginForm="ngForm">
+        <div class="left">
+            <div>
+                <p>Hello, Welcome!</p>
+                <a href="">Don't have an account? </a>
+                <input type="button" value="Register" data-bs-toggle="modal" data-bs-target="#registerModal" />
+            </div>
+        </div>
+
+        <div class="right">
+            <div>
+                <h1>Login</h1>
+                <input type="email" id="email" [(ngModel)]="email" name="email" required placeholder="Email" />
+                <span class="material-symbols-outlined person"> person </span>
+
+                <input type="password" name="Password" id="password" placeholder="Password" [(ngModel)]="password"
+                    required />
+                <span class="material-symbols-outlined lock"> lock </span>
+                <a href="">Forgot Password?</a>
+
+                <button type="submit">Login</button>
+                <p>or login with social platforms</p>
+                <div>
+                    <a href=""><i class="fa-brands fa-google fa-align-center"></i> </a>
+                    <a href=""><i class="fa-brands fa-facebook-f fa-align-center"></i></a>
+                    <a href=""><i class="fa-brands fa-github fa-align-center"></i></a>
+                    <a href=""><i class="fa-brands fa-linkedin-in fa-align-center"></i></a>
+                </div>
+            </div>
+        </div>
+
+    </form>
+
+    <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+        <div class="modal-dialog custom-modal-height modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="registerModalLabel">Register</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <app-login-register></app-login-register>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
