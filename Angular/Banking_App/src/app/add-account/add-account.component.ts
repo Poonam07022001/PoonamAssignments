@@ -12,6 +12,6 @@ export class AddAccountComponent {
 
   addAccount() {
     this.accountAdded.emit(this.newAccount);
-    this.newAccount = { name: '', type: '', balance: 0 }; // Reset form after submission
+    this.newAccount = { name: '', type: '', balance: 0 }; 
   }
 }
