@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <Folder Include="Configration\" />
-    <Folder Include="Repository\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -28,6 +27,7 @@
   
 
   <ItemGroup>
+    <ProjectReference Include="..\BankApp.Identity\BankApp.Identity.csproj" />
     <ProjectReference Include="..\BankingApp.Application\BankingApp.Application.csproj" />
     <ProjectReference Include="..\BankingApp.Domain\BankingApp.Domain.csproj" />
   </ItemGroup>

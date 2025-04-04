@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
 using BankingApp.Domain.Enum;
+using System.Text.Json.Serialization;
 
 namespace BankingApp.Domain.Models
 {
@@ -14,7 +15,8 @@ namespace BankingApp.Domain.Models
         public int AccountId { get; set; }
         [ForeignKey("AccountId")]
         [Required]
-        public Account Account { get; set; }
+        [JsonIgnore]
+        public Account? Account { get; set; }
         [Required]
         public TransactionTypes TransactionType { get; set; }
         [Required]

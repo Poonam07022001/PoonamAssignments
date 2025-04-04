@@ -1,0 +1,52 @@
+<div>
+    <form (ngSubmit)="onLogin()" #loginForm="ngForm">
+        <div class="left" data-aos="fade-up" >
+            <div>
+                <p>Hello, Welcome!</p>
+                <a href="">Don't have an account? </a>
+                <button type="button" class="btn custom-btn" data-bs-toggle="modal" data-bs-target="#registerModal">
+                    Register
+                </button>
+                
+                
+            </div>
+        </div>
+
+        <div class="right" data-aos="fade-left">
+            <div>
+                <h1>Login</h1>
+                <input type="email" id="email" [(ngModel)]="email" name="email" required placeholder="Email" />
+                <span class="material-symbols-outlined person"> person </span>
+
+                <input type="password" name="Password" id="password" placeholder="Password" [(ngModel)]="password"
+                    required />
+                <span class="material-symbols-outlined lock"> lock </span>
+                <a href="">Forgot Password?</a>
+
+                <button type="submit" data-aos="zoom-in">Login</button>
+                <p>or login with social platforms</p>
+                <div data-aos="fade-up">
+                    <a> <i class="fa-brands fa fa-google" aria-hidden="true"></i></a>
+                    <a href=""><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href=""><i class="fa-brands fa-github"></i></a>
+                    <a href=""><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <!-- Register Modal -->
+    <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true" data-aos="flip-up">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="registerModalLabel">Register</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <app-login-register></app-login-register>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

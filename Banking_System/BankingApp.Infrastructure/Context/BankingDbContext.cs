@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BankingApp.Infrastructure.Context
 {
-    public class BankingDbContext : IdentityDbContext
+    public class BankingDbContext :DbContext
     {
         public BankingDbContext(DbContextOptions<BankingDbContext> options) : base(options)
         {
@@ -17,7 +17,6 @@ namespace BankingApp.Infrastructure.Context
 
         public DbSet<Account> Account { get; set; }
         public DbSet<Transaction> Transaction { get; set; }
-        public DbSet<User> users { get; set; }
 
     }
 }

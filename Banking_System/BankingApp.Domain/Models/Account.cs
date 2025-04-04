@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using BankingApp.Domain.Enum;
+using System.Text.Json.Serialization;
 
 namespace BankingApp.Domain.Models
 {
@@ -11,8 +12,7 @@ namespace BankingApp.Domain.Models
         [Required]
 
         public string UserId { get; set; } = string.Empty;
-        [ForeignKey("UserId")]
-        public User? User { get; set; }
+ 
         [Required]
         public long AccountNumber { get; set; }
         [Required]
@@ -21,7 +21,7 @@ namespace BankingApp.Domain.Models
         public AccountTypes AccountType { get; set; }
         [Required]
         public DateTime CreatedDate { get; set; }
-
+        [JsonIgnore]
         public ICollection<Transaction>? Transaction { get; set; }
 
        

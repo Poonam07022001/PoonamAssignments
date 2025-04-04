@@ -17,6 +17,7 @@ namespace BankingApp.Infrastructure
             });
 
             services.AddScoped<IAccountRepository, AccountRepository>();
+            services.AddScoped<ITransactionRepository, TransactionRepository>();
             return services;
 
 

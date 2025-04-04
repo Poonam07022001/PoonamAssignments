@@ -1,7 +1,9 @@
 ﻿
+using BankApp.Identity.Models;
 using BankingApp.Application.ViewModels.AccountViewModels;
 using BankingApp.Domain.Models;
 using BankingApp.Infrastructure.Context;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace BankingApp.Domain.Interface
@@ -9,17 +11,18 @@ namespace BankingApp.Domain.Interface
     public class AccountRepository : IAccountRepository
     {
         readonly BankingDbContext _bankingDbContext;
-
-        public AccountRepository(BankingDbContext bankingDbContext)
+        readonly UserManager<ApplicationUser> _userManager;
+        public AccountRepository(BankingDbContext bankingDbContext, UserManager<ApplicationUser> userManager)
         {
             _bankingDbContext = bankingDbContext;
+            _userManager = userManager;
         }
 
-        public async Task<AccountAddModel> AddAccountAsync(AccountAddModel accounts)
+        public async Task<AccountAddModel> AddAccountAsync(string UId,AccountAddModel accounts)
         {
             var addAccount = new Account
             {
-                UserId = "1",
+                UserId = UId,
                 AccountNumber = accounts.AccountNumber,
                 Balance = accounts.Balance,
                 AccountType = accounts.AccountTypes,
@@ -45,6 +48,12 @@ namespace BankingApp.Domain.Interface
         public async Task<Account> GetAccountByIdAsync(int id)
         {
             return await _bankingDbContext.Account.FirstOrDefaultAsync(s => s.Id == id);
+        }
+
+        public async Task<IEnumerable<Account>> GetAccountByUserIdAsync(string id)
+        {
+            var list = await _bankingDbContext.Account.Where(s => s.UserId == id).ToListAsync();
+            return list;
         }
 
         public async Task<IEnumerable<Account>> GetAllAccounts()

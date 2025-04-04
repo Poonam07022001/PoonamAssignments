@@ -1,0 +1,27 @@
+<div class="container mt-4">
+  <div class="card shadow p-4">
+    <h3 class="text-center mb-4">Add Transaction</h3>
+
+    <form [formGroup]="transactionForm" (ngSubmit)="transactionUser()">
+      <div class="mb-3">
+        <label class="form-label">Transaction Type</label>
+        <select class="form-select" formControlName="type">
+          <option value="credit">Credit</option>
+          <option value="debit">Debit</option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Amount</label>
+        <input type="number" class="form-control" formControlName="amount" placeholder="Enter amount" />
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Description</label>
+        <textarea class="form-control" formControlName="description" rows="3" placeholder="Enter description"></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-primary w-100">Add Transaction</button>
+    </form>
+  </div>
+</div>

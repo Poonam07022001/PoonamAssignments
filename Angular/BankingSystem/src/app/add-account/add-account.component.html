@@ -1,0 +1,26 @@
+<form (ngSubmit)="addAccount()" #accountForm="ngForm">
+ 
+
+  <div class="mb-3">
+    <label for="accountType" class="form-label">Account Type</label>
+    <select class="form-control" id="accountType" name="accountTypes" required [(ngModel)]="newAccount.accountTypes">
+      <option value="1">Saving Account</option>
+      <option value="2">Current Account</option>
+      <option value="3">Joint Account</option>
+      <option value="4">Salary Account</option>
+    </select>
+  </div>
+
+  <div class="mb-3">
+    <label for="balance" class="form-label">Balance</label>
+    <input type="number" class="form-control" id="balance" name="balance" required [(ngModel)]="newAccount.balance">
+  </div>
+
+  <div class="mb-3">
+    <label for="accountnumber" class="form-label">Account Number</label>
+    <input type="number" class="form-control" id="accountnumber" name="accountNumber" required [(ngModel)]="newAccount.accountNumber">
+  </div>
+
+  <button type="submit" class="btn btn-success" [disabled]="accountForm.invalid">Save Account</button>
+  <button type="button" class="btn btn-secondary ms-2" data-bs-dismiss="modal" (click)="resetForm()">Cancel</button>
+</form>

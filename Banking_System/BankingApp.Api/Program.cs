@@ -1,5 +1,8 @@
 
+using BankApp.API.Middleware;
+using BankApp.Identity;
 using BankingApp.Application;
+using BankingApp.Application.LoginModels;
 using BankingApp.Infrastructure;
 
 namespace BankingApp.Api
@@ -12,8 +15,8 @@ namespace BankingApp.Api
 
             // Add services to the container.
             builder.Services.AddInterfaceServices(builder.Configuration);
+            builder.Services.AddIdentityServices(builder.Configuration);
             builder.Services.AddApplicationServices();
-
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -29,10 +32,16 @@ namespace BankingApp.Api
                 app.UseSwaggerUI();
             }
 
+            app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+
+            app.UseMiddleware<ExceptionMiddleware>();
+
+
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
 
+            app.UseAuthorization();
 
             app.MapControllers();
 

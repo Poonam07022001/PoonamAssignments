@@ -1,0 +1,13 @@
+<form #transactionForm="ngForm" (ngSubmit)="transfertoanotheruser(transactionForm)">
+  <div class="mb-3">
+    <label class="form-label">Account Number</label>
+    <input type="number" class="form-control" placeholder="Enter Account Number" name="accountNumber" [(ngModel)]="transferModel.accountNumber" required />
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Amount</label>
+    <input type="number" class="form-control" placeholder="Enter Amount" name="amount" [(ngModel)]="transferModel.amount" required />
+  </div>
+
+  <button type="submit" class="btn btn-primary w-100">Transfer</button>
+</form>

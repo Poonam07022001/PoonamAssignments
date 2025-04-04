@@ -21,7 +21,8 @@ namespace BankingApp.Application.Features.AccountFeature.Command.AddAccount
  
         public async Task<AccountAddModel> Handle(AddAccountCommand request, CancellationToken cancellationToken)
         {
-            var acc = await _accountRepository.AddAccountAsync(request.account);
+            //var acc = await _accountRepository.AddAccountAsync(request.UId, request.account);
+            var acc = await _accountRepository.AddAccountAsync(request.UId, request.account);
             return acc;
         }
 

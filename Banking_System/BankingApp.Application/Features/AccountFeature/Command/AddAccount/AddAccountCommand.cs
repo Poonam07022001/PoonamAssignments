@@ -9,6 +9,6 @@ using MediatR;
 
 namespace BankingApp.Application.Features.AccountFeature.Command.AddAccount
 {
-   public record AddAccountCommand (AccountAddModel account): IRequest<AccountAddModel>;
+   public record AddAccountCommand (string UId, AccountAddModel account): IRequest<AccountAddModel>;
   
 }
